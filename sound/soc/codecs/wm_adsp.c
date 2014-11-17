@@ -2577,6 +2577,14 @@ static int wm_adsp_populate_buffer_regions(struct wm_adsp *adsp)
 	}
 
 	return 0;
+
+out_fw:
+	regmap_async_complete(regmap);
+	release_firmware(firmware);
+	wm_adsp_buf_free(&buf_list);
+out:
+	kfree(file);
+	return ret;
 }
 
 static int wm_adsp_populate_buffer_regions2(struct wm_adsp *adsp)
