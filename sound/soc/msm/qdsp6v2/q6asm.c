@@ -3039,6 +3039,11 @@ static int __q6asm_enc_cfg_blk_pcm(struct audio_client *ac,
 		return -EINVAL;
 	}
 
+	if (channels > PCM_FORMAT_MAX_NUM_CHANNEL) {
+		pr_err("%s: Invalid channel count %d\n", __func__, channels);
+		return -EINVAL;
+	}
+
 	pr_debug("%s: Session %d, rate = %d, channels = %d\n", __func__,
 			 ac->session, rate, channels);
 
