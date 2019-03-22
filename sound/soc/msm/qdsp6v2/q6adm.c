@@ -1009,11 +1009,6 @@ static int32_t adm_callback(struct apr_client_data *data, void *priv)
 			return 0;
 		}
 		if (data->opcode == APR_BASIC_RSP_RESULT) {
-			if (data->payload_size < (2 * sizeof(uint32_t))) {
-				pr_err("%s: Invalid payload size %d\n", __func__,
-					data->payload_size);
-				return 0;
-			}
 			pr_debug("%s: APR_BASIC_RSP_RESULT id 0x%x\n",
 				__func__, payload[0]);
 			if (!((client_id != ADM_CLIENT_ID_SOURCE_TRACKING) &&
